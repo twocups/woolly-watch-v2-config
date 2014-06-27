@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Woolly Watch Config</title>
+	
+	<script>
+	  //Setup to allow easy adding more options later
+	  function saveOptions() {
+		var realtimeSelect = document.getElementById("real_time_select");
+	
+		var options = {
+		  "alwaysReal": realtimeSelect.options[realtimeSelect.selectedIndex].value
+		}
+	
+		return options;
+	  };
+	
+	  var submitButton = document.getElementById("save_button");
+	  submitButton.addEventListener("click", 
+		function() {
+		  console.log("Submit");
+	
+		  var options = saveOptions();
+		  var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
+	
+		  document.location = location;
+		}, 
+	  false);
+	</script>
+	
+  </head>
+  <body>
+	<h1>Woolly Watch Config</h1>
+	<p>Choose watchapp settings</p>
+
+	<p>Real time:
+	<select id="real_time_select">
+	  <option value="off">Tap to show, auto hide</option>
+	  <option value="on">Always shown</option>
+	</select>
+	</p>
+
+	<p>
+	<button id="save_button">Save</button>
+	</p>
+  </body>
+</html>
